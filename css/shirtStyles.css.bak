@@ -1,0 +1,95 @@
+
+
+body
+{
+background-color:Azure;
+//background-image:url('/home/nyros/Pictures/firstdayofthespring03.jpg') no-repeat;	
+}
+
+
+/*two t-shirts displaying none initially*/
+#tshirt1,#tshirt2
+{
+display:none;
+}
+
+
+/*sleevless button*/
+button#tsoff
+{
+margin-top:-8px;
+margin-left:105px;
+
+}
+
+/*div that show images*/
+#tsview
+{
+width:500;
+height:600;
+border:2px solid orange;
+border-radius:10px;
+float:left;
+}
+
+/*div that shows shirt design properties*/
+#designshirt
+{
+border:2px solid green;
+border-radius:10px;
+float:right;
+}
+
+
+/*span tag that shows text on image*/
+#txt
+{
+border:0px;
+display:none;
+}
+
+/*add text icon*/
+
+#icon2
+{
+position:relative;
+top:5px;
+}
+
+
+/*div for text properties*/
+#next
+{
+display:none;
+border:5px solid pink;
+border-radius:10px;
+margin:3px;
+padding:5px;
+}
+
+
+/*displaying text properties initially*/
+.yourtext,#fontColor,#tsize,span.fontstyle,#fontName,#display
+{
+display:none;
+}
+
+
+
+/*button( addtext & preview)*/
+#atext,#prev
+{
+margin-left:10px;
+}
+
+
+/*div that previews*/
+
+#save
+{
+	
+	width:400px;
+	height:400px;
+	/*border:1px solid;*/
+	
+}

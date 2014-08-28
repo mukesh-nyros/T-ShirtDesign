@@ -1,0 +1,139 @@
+
+
+body
+{
+background-color:Azure;
+}
+
+
+
+/*two t-shirts displaying none initially*/
+#tshirt1,#tshirt2
+{
+display:none;
+}
+
+
+#tshirt1
+{
+margin-left:50px;
+margin-top:10px;
+}
+
+
+#tshirt2
+{
+margin-left:50px;
+margin-top:10px;
+}
+
+
+/*sleevless button*/
+button#tsoff
+{
+margin-top:-8px;
+margin-left:105px;
+
+}
+
+/*div that show images*/
+#tsview
+{
+width:400px;
+height:500px;
+border:4px solid orange;
+border-radius:10px;
+float:left;
+}
+
+/*div that shows shirt design properties*/
+#designshirt
+{
+border:4px solid Chartreuse;
+border-radius:10px;
+float:right;
+}
+
+
+/*span tag that shows text on image*/
+#txt
+{
+top:5px;
+cursor: pointer;
+position:absolute;
+display:none;
+}
+
+/*add text icon*/
+
+#icon2
+{
+position:relative;
+top:5px;
+}
+
+
+/*div for text properties*/
+#next
+{
+display:none;
+border:5px solid pink;
+border-radius:10px;
+margin:3px;
+padding:5px;
+}
+
+
+/*displaying text properties initially*/
+.yourtext,#fontColor,#tsize,span.textProperties,#fontName,#display,#favc,#fav
+{
+display:none;
+}
+
+
+
+/*button( addtext & preview)*/
+#atext,#prev
+{
+margin-left:10px;
+}
+
+
+/*saving changes to div*/
+
+#save
+{
+	width:250px;
+	margin-left:200px;
+
+	
+}
+
+
+
+/*background image*/
+#bg
+{
+  z-index: -999;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity:0.8;
+  background-size:100%
+}
+
+
+
+
+/**/
+a
+{
+text-decoration:none;
+}
+
+
+

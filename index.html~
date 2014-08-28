@@ -1,0 +1,213 @@
+<html>
+
+ <head>
+  <link rel="stylesheet" type="text/css" href="./css/shirtStyles.css">
+
+  <script src="./js/jquery-2.1.1.js"></script>
+  <script src="./js/jquery-ui-1.10.4.custom.js"></script>
+  <script src=".http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src=".http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="./js/html2canvas.js"></script>
+  <script src="./js/t-shirt.js"></script>
+  
+  
+ </head>
+  <body>
+<img id="bg" src="./images/bg.jpg">
+	<div id="main">
+	<div id="tsview">
+        <div id="sample">
+        <img src="./images/ts.png"  id="tshirt1"  width="250" height="260" onload="imageReady(this)">
+	<img src="./images/tsl.png" id="tshirt2" width="250" height="260" onload="imageReady1(this)">
+	<span id="txt"></span>
+	</div>	
+</div>			<!--close of tsview div-->
+
+	<div id="designshirt">
+	<span style="color:Aqua">Select shirt type:</span><button id="tson" value="add text">sleeves on</button><br/><br/>
+	<button id="tsoff" value="add text">sleeves off</button><br/>
+	
+	<div id="main2">
+	<span id="favc" style="color:Aqua">Shirt color:<input type="color" id="favcolor"></span><br/>
+	<span id="fav" style="color:Aqua">Shirt color:<input type="color" id="favcolor1"></span><br/><br/>
+
+	<span><img src="./images/icon2.png" width="20" height="20" id="icon2"></span><button id="atext" value="add text">Click to Add text</button><br/><br/>
+
+	<div id="next">
+	<input class="yourtext" autocomplete="off" type="text" id="t1" placeholder="Your Text Here"/><br/><br/>
+                <span class="textProperties" style="color:Aqua">Font Size:</span><select id="tsize" autocomplete="off">
+
+                          <option>10</option>
+                          <option>15</option>
+                          <option>20</option>
+                          <option>25</option>
+                          <option>30</option>
+			  <option>35</option>
+			  <option>40</option>                          
+			  </select>
+                           <br><br/>
+	<span class="textProperties" style="color:Aqua">Font color:</span><input type="color" id="fontColor"><br/><br/>
+        <span class="textProperties" style="color:Aqua">Font Style:</span><select id="fontName" >
+                       
+                          <option>Normal</option>
+                          <option>Italic</option>
+			  <option>Oblique</option>        
+                          </select>
+                          <br><br/>
+
+<button  id="changes" >save changes before preview</button></br>
+</div>		<!--close of next div-->
+
+
+	<span><img src="./images/Prev.png" width="20" height="20" id="icon2"></span><button id="prev" value="preview" >Preview</button><br/>
+		
+	</div>			<!--close of main2 div-->
+</div>		<!--close of designshirt div-->
+
+
+<div id="save">
+            <a id="display"  ><img src="./images/close.png" width="30" height="30" </a>
+ </div>
+
+
+
+<script>
+/*new functionalities*/
+
+
+/*drawing image for T-shirt with sleeves by canvas*/
+var tshirt1 = document.getElementById("tshirt1");
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+var wPixels = null;
+var hPixels = null;
+
+function imageReady(img)
+{
+
+    document.getElementById("favcolor").style.display="none";
+    document.getElementById("favcolor1").style.display="none";
+  
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    wPixels = ctx.getImageData(0, 0, img.width, img.height);
+    hPixels = ctx.getImageData(0, 0, img.width, img.height);
+    img.onload = null;
+
+}
+
+
+
+
+
+/*change color*/
+
+
+function hexToRGB(hex)
+{
+    var long = parseInt(hex.replace(/^#/, ""), 16);
+    return {
+        R: (long >>> 16) & 0xff,
+        G: (long >>> 8) & 0xff,
+        B: long & 0xff
+    };
+}
+
+
+/*selecting color for t-shirt*/
+
+$('#favcolor').focus(function()
+    {
+    
+        if(!wPixels)  return; // Check if image has loaded     
+        var addColor = hexToRGB(document.getElementById("favcolor").value);
+
+        for(var k = 0, L = wPixels.data.length; k < L; k += 4)
+        {
+            if(hPixels.data[k + 3] > 0) 
+            {
+                hPixels.data[k] = wPixels.data[k] / 255 * addColor.R;
+                hPixels.data[k + 1] = wPixels.data[k + 1] / 255 * addColor.G;
+                hPixels.data[k + 2] = wPixels.data[k + 2] / 255 * addColor.B;
+            }
+        }
+
+        ctx.putImageData(hPixels, 0, 0);
+        tshirt1.src = canvas.toDataURL("image/png");
+       
+          });
+
+
+
+
+
+
+/*drawing image for sleeveless shirt by canvas*/
+
+var tshirt2 = document.getElementById("tshirt2");
+var canva = document.createElement("canvas");
+var c = canva.getContext("2d");
+var wPixels1 = null;
+var hPixels1 = null;
+
+function imageReady1(img)
+{
+
+    document.getElementById("favcolor").style.display="none";
+    document.getElementById("favcolor1").style.display="none";
+  
+    canva.width = img.width;
+    canva.height = img.height;
+    c.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    wPixels1 = c.getImageData(0, 0, img.width, img.height);
+    hPixels1 = c.getImageData(0, 0, img.width, img.height);
+    img.onload = null;
+
+}
+
+
+
+function hexToRGB1(hex)
+{
+    var long = parseInt(hex.replace(/^#/, ""), 16);
+    return {
+        R: (long >>> 16) & 0xff,
+        G: (long >>> 8) & 0xff,
+        B: long & 0xff
+    };
+}
+
+
+
+/*selecting color for t-shirt sleevless*/
+
+$('#favcolor1').focus(function()
+    {
+    		
+        if(!wPixels1)  return; // Check if image has loaded     
+        var addColor = hexToRGB1(document.getElementById("favcolor1").value);
+        for(var i = 0, L = wPixels1.data.length; i < L; i += 4)
+        {
+            if(hPixels.data[i + 3] > 0) 
+            {
+                hPixels1.data[i] = wPixels1.data[i] / 255 * addColor.R;
+                hPixels1.data[i + 1] = wPixels1.data[i + 1] / 255 * addColor.G;
+                hPixels1.data[i + 2] = wPixels1.data[i + 2] / 255 * addColor.B;
+            }
+        }
+
+        c.putImageData(hPixels1, 0, 0);
+        tshirt2.src = canva.toDataURL("image/png");
+       
+        
+    });
+
+
+
+
+/*new functionalities*/
+</script>
+</div>
+  </body>
+</html>

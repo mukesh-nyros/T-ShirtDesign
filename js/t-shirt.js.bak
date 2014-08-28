@@ -1,0 +1,217 @@
+
+
+$(document).ready(function(){			/*document started*/
+
+/*showing  T-Shirt with sleeves and hiding sleeveless T-Shirt*/
+
+  $("#tson").click(function(){
+
+    $("#tshirt1").show();
+    $("#tshirt2").hide();
+    $('#txt').draggable({containment:'parent'});
+
+  });
+
+/*showing sleeveless T-Shirt and hiding  T-Shirt with sleeves*/
+
+
+$("#tsoff").click(function(){
+    $("#tshirt2").show();
+     $("#tshirt1").hide();
+  });
+
+
+
+/*showing text style proprties*/
+
+$('#atext').click(function () {
+$('#next').toggle(function(){
+$('.yourtext').show();
+$('#txt').show();
+$('#fontColor').show();
+$('#tsize').show();
+$('span.fontstyle').show();
+$('#fontName').show();
+});
+});
+
+/*showing text on images*/
+
+ $(".yourtext").keyup(function(){
+
+	var textinput=document.getElementById("t1").value;
+	document.getElementById("txt").innerHTML=textinput;
+
+    });
+
+
+/*selecting size for t-shirt*/
+
+$('#tsize').click(function () {
+
+	var s=document.getElementById("tsize").value;
+	document.getElementById("txt").style.fontSize=s;
+
+});
+
+
+
+
+/*selecting color for text on image*/
+
+$("#fontColor").focus(function(){
+
+	var c=document.getElementById("fontColor").value;
+	document.getElementById("txt").style.color=c;
+       
+    });
+
+
+/*changing fontname for text on image*/
+
+$('#fontName').click(function()
+{
+if(document.getElementById("fontName").value=="Italic")
+	
+	document.getElementById("txt").style.fontStyle="italic";
+
+if(document.getElementById("fontName").value=="Normal")
+  
+  document.getElementById("txt").style.fontStyle="normal";
+
+if(document.getElementById("fontName").value=="Oblique")
+  
+ document.getElementById("txt").style.fontStyle="oblique";
+
+
+});
+
+
+  });			/*document closed*/
+
+
+
+
+
+
+/*to save the changes*/
+
+function apply()
+	{
+
+   document.getElementById("save").style.display="none";
+   html2canvas([document.getElementById("tsview")], {
+    onrendered: function(canvas) {
+      $("canvas").remove();
+
+    document.getElementById("save").appendChild(canvas);
+    }
+    });
+alert("hi");
+  }
+
+
+
+
+/*save image in */
+
+function show()
+	{
+alert('save');
+ document.getElementById("display").style.display="block";
+
+ var shw = document.getElementById("save");
+
+  shw.style.width = window.innerWidth + "px";
+   
+  
+  setTimeout(function() {
+
+    shw.style.height = window.innerHeight + "px";
+
+  }, 0);
+  
+
+  document.getElementById("tsview").style.display="none";
+  document.getElementById("main2").style.display="none";
+  document.getElementById("display").style.display="block";
+  document.getElementById("save").style.display="block";
+  document.getElementById("designshirt").style.display="none";
+
+
+
+}
+
+
+/*To preview saved image*/
+
+function display(){
+  
+  document.getElementById("tsview").style.display="block";
+  document.getElementById("main2").style.display="block";
+ document.getElementById("display").style.display="none";
+document.getElementById("save").style.display="none";
+document.getElementById("designshirt").style.display="block";
+
+ }
+
+
+
+
+/*new modifications start
+
+
+
+// Kick off the jQuery with the document ready function on page load
+$('#prev').click(function(){
+alert('p');
+	imagePreview();
+});
+
+// Configuration of the x and y offsets
+this.imagePreview = function(){	
+		xOffset = -20;
+		yOffset = 40;		
+		
+    $(".preview").hover(function(e){
+        this.t = this.title;
+        this.title = "";	
+	     var c = (this.t != "") ? "<br/>" + this.t : "";
+         $("body").append("<p id='preview'><img src='"+ this.href +"' alt='Image preview' />"+ c +"</p>");								 
+         $("#preview")
+            .css("top",(e.pageY - xOffset) + "px")
+            .css("center",(e.pageX + yOffset) + "px")
+            .fadeIn("slow");
+    },
+	
+    function(){
+        this.title = this.t;
+        $("#preview").remove();
+
+    });	
+	
+    $(".preview").mousemove(function(e){
+        $("#preview")
+            .css("top",(e.pageY - xOffset) + "px")
+            .css("center",(e.pageX + yOffset) + "px");
+    });			
+};
+
+
+/*new modifications end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
